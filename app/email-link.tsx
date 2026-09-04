@@ -1,25 +1,42 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useSyncExternalStore } from "react";
+
+const EMAIL_PARTS = ["maku", "werere", "angels", "@", "gmail", ".com"];
+
+function subscribe() {
+  return () => {};
+}
+
+function getClientEmail() {
+  return EMAIL_PARTS.join("");
+}
+
+function getServerEmail() {
+  return "";
+}
 
 export function EmailLink() {
-  const ref = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const address = ["maku", "werere", "angels", "@", "gmail", ".com"].join("");
-    el.href = "mai" + "lto:" + address;
-    el.textContent = address;
-    el.setAttribute("aria-label", "Email " + address);
-  }, []);
+  const address = useSyncExternalStore(
+    subscribe,
+    getClientEmail,
+    getServerEmail,
+  );
+  const revealed = address.length > 0;
 
   return (
     <>
-      <a ref={ref} id="contact-email" aria-label="Email Angels">
-        Email Angels
+      <a
+        id="contact-email"
+        href={revealed ? "mai" + "lto:" + address : undefined}
+        aria-label={revealed ? "Email " + address : "Email Angels"}
+      >
+        {revealed ? address : "Email Angels"}
       </a>
-      <noscript>(makuwerereangels [at] gmail [dot] com)</noscript> via email
+      {revealed ? null : (
+        <noscript>(makuwerereangels [at] gmail [dot] com)</noscript>
+      )}{" "}
+      via email
     </>
   );
 }
