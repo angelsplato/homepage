@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  line-height: 1.45;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #666;
+  color: #111;
+}
+
+main {
+  width: min(70rem, calc(100% - 2rem));
+  margin: 1rem auto;
+  padding: 1.25rem 2rem 2rem;
+  background: #fff;
+}
+
+h1,
+h2 {
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.67em 0;
+}
+
+h1:first-child {
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.83em 0;
+}
+
+p {
+  margin: 1em 0;
+}
+
+ul {
+  margin: 1em 0;
+  padding-left: 40px;
+  list-style-type: disc;
+}
+
+li + li {
+  margin-top: 0.3rem;
+}
+
+a {
+  color: #00e;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+a:visited {
+  color: #551a8b;
+}
+
+.profile-image {
+  float: right;
+  width: 140px;
+  height: 140px;
+  margin: 0 0 1rem 1rem;
+  border-radius: 4px;
+}
+
+@media (max-width: 44rem) {
+  main {
+    width: min(100% - 1rem, 70rem);
+    margin: 0.5rem auto;
+    padding: 1rem;
+  }
+
+  .profile-image {
+    float: none;
+    display: block;
+    margin: 0 0 1rem;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  main {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
